@@ -1,0 +1,5 @@
+hello.page:
+  title: 'hello!'
+  route_name: hello.hello
+  description: 'hello page'
+  menu_name: main

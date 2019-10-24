@@ -1,0 +1,6 @@
+name: Hello
+description: module hello
+package: training
+type: module
+core: 8.x
+version: '0.0.1'
