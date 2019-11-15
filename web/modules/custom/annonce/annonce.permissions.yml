@@ -1,0 +1,37 @@
+add annonce entities:
+  title: 'Create new annonce entities'
+
+administer annonce entities:
+  title: 'Administer annonce entities'
+  description: 'Allow to access the administration form to configure annonce entities.'
+  restrict access: true
+
+delete any annonce entities:
+  title: 'Delete any annonce entities'
+
+delete own annonce entities:
+  title: 'Delete own annonce entities'
+
+edit any annonce entities:
+  title: 'Edit any annonce entities'
+
+edit own annonce entities:
+  title: 'Edit own annonce entities'
+
+view published annonce entities:
+  title: 'View published annonce entities'
+
+view unpublished annonce entities:
+  title: 'View unpublished annonce entities'
+
+view all annonce revisions:
+  title: 'View all annonce revisions'
+
+revert all annonce revisions:
+  title: 'Revert all annonce revisions'
+  description: 'Role requires permission <em>view annonce revisions</em> and <em>edit rights</em> for annonce entities in question or <em>administer annonce entities</em>.'
+
+delete all annonce revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view annonce revisions</em> and <em>delete rights</em> for annonce entities in question or <em>administer annonce entities</em>.'
+
