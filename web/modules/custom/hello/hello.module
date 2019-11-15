@@ -1,21 +1,97 @@
 <?php
 
-function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
-  switch ($route_name) {
+use Drupal\Core\Form\FormStateInterface;
 
-    // Main module help for the block module.
-    case 'help.page.Hello':
-      return '<p>' . t('Blocks are boxes of content rendered into an area, or region, of a web page. The default theme Bartik, for example, implements the regions "Sidebar first", "Sidebar second", "Featured", "Content", "Header", "Footer", etc., and a block may appear in any one of these areas. The <a href=":blocks">blocks administration page</a> provides a drag-and-drop interface for assigning a block to a region, and for controlling the order of blocks within regions.') . '</p>';
-        }
+
+function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+
+        // Main module help for the block module.
+        case 'help.page.Hello':
+            return '<p>' . t('Blocks are boxes of content rendered into an area, or region, of a web page. The default theme Bartik, for example, implements the regions "Sidebar first", "Sidebar second", "Featured", "Content", "Header", "Footer", etc., and a block may appear in any one of these areas. The <a href=":blocks">blocks administration page</a> provides a drag-and-drop interface for assigning a block to a region, and for controlling the order of blocks within regions.') . '</p>';
+    }
 }
 
-function hello_cron(){
-  \Drupal::messenger()->addMessage(t("Hello World cron."));
+function hello_cron()
+{
+    $purge_days_number = \Drupal::config('hello.settings')->get('purge_days_number');
+    if ($purge_days_number != '0') {
+        \Drupal::database()->delete('hello_user_statistics')
+            ->condition('time', REQUEST_TIME - $purge_days_number * (24 * 3600), '<')
+            ->execute();
+    }
 }
 
+function hello_user_login(\Drupal\user\UserInterface $account)
+{
+    \Drupal::messenger()->addMessage(t("Hello mister %name.",
+        ['%name' => $account->getAccountName()]
+    ));
+    \Drupal::database()->insert('hello_user_statistics')
+        ->fields([
+            'uid' => $account->id(),
+            'action' => '1',
+            'time' => REQUEST_TIME,
+        ])
+        ->execute();
+}
 
-function hello_user_login(\Drupal\user\UserInterface $account) {
-  \Drupal::messenger()->addMessage(t("Hello mister %name.",
-    ['%name' => $account->getAccountName()]
-  ));
+function hello_user_logout(\Drupal\Core\Session\AccountProxyInterface $account)
+{
+    \Drupal::database()->insert('hello_user_statistics')
+        ->fields([
+            'uid' => $account->id(),
+            'action' => '0',
+            'time' => REQUEST_TIME,
+        ])
+        ->execute();
+}
+
+function hello_user_delete(\Drupal\user\UserInterface $user)
+{
+    \Drupal::database()->delete('hello_user_statistics')
+        ->condition('uid', $user->id())
+        ->execute();
+}
+
+function hello_theme($existing, $type, $theme, $path)
+{
+    return [
+        'hello_user_connexion' => [
+            'template' => 'hello-user-connexion',
+            'variables' => [
+                'user' => NULL,
+                'count' => NULL,
+            ],
+        ],
+    ];
+}
+
+function hello_form_user_admin_settings_alter(array &$form, FormStateInterface $form_state)
+{
+    $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+    unset($roles['anonymous']); // Supprimer Anonymous du tableau de $roles
+    $options = [];
+    foreach ($roles as $role) {
+        $options[$role->id()] = $role->label();
+    }
+
+    $form['user_statistics'] = [
+        '#type' => 'details',
+        '#weight' => '-1',
+        '#title' => t('Choose roles to track'),
+    ];
+    $form['user_statistics']['options'] = [
+        '#type' => 'checkboxes',
+        '#options' => $options,
+        '#default_value' => \Drupal::config('hello.settings')->get('user_stat_roles'),
+    ];
+    $form['#submit'][] = 'hello_user_admin_settings_form_submit';
+}
+
+function hello_user_admin_settings_form_submit(array &$form, FormStateInterface $form_state)
+{
+    $optionsChoice = $form_state->getValue('options');
+    \Drupal::service('config.factory')->getEditable('hello.settings')->set('user_stat_roles', $optionsChoice)->save();
 }

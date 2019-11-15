@@ -1,5 +1,13 @@
-hello.page:
+hello.hello:
   title: 'hello!'
   route_name: hello.hello
-  description: 'hello page'
+  description: 'hello hello'
   menu_name: main
+
+
+hello.admin_form:
+  title: hello
+  description: 'hello module configuration page'
+  route_name: hello.adminForm
+  menu_name: admin
+  parent: system.admin_config

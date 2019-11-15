@@ -1,0 +1,8 @@
+access hello:
+  title: 'access hellooo'
+  description: 'Ceci est une nouvelle permission'
+
+
+administer hello:
+  title: 'administer hellooo'
+  description: Al'lo u'ser a back' office'

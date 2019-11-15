@@ -1,0 +1,24 @@
+hello.hello:
+  title: 'hello!'
+  route_name: hello.hello
+  base_route: hello.hello
+  weight: 1
+
+
+hello2.hello:
+  title: 'hello 2!'
+  route_name: hello2.hello
+  base_route: hello.hello
+  weight: 2
+
+helloStats.hello:
+  title: 'hello Stats!'
+  route_name: helloStats.hello
+  base_route: entity.user.canonical
+  weight: 3
+
+helloform.hello:
+  title: 'Calculator'
+  route_name: helloform.hello
+  base_route: hello.hello
+  weight: 4

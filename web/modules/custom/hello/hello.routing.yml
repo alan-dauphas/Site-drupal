@@ -5,3 +5,40 @@ hello.hello:
     _controller: 'Drupal\hello\Controller\HelloController::content'
   requirements:
     _access: 'TRUE'
+
+
+hello2.hello:
+  path: '/hello/node-list/{nodetype}'
+  defaults:
+    _title: 'noeuds liste'
+    _controller: 'Drupal\hello\Controller\Hello2Controller::list_nodes'
+    nodetype: ''
+  requirements:
+    _access: 'TRUE'
+
+helloStats.hello:
+  path: '/user/{user}/statistics'
+  defaults:
+    _title: 'Stats History'
+    _controller: 'Drupal\hello\Controller\HelloStatsController::history_stats'
+    nodetype: ''
+  requirements:
+    _access_hello: '48'
+
+helloform.hello:
+  path: '/hello-form'
+  defaults:
+    _title: 'Hello form'
+    _form: '\Drupal\hello\Form\HelloForm'
+  requirements:
+    _access: 'administer hello'
+
+hello.adminForm:
+  path: '/admin/config/hello'
+  defaults:
+    _title: 'User statistics'
+    _form: '\Drupal\hello\Form\AdminForm'
+  requirements:
+    _permission: 'access hello'
+
+
