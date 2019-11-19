@@ -2,6 +2,7 @@
 
 namespace Drupal\annonce\Entity;
 
+use Drupal\Core\Entity\Annotation\ContentEntityType;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EditorialContentEntityBase;
