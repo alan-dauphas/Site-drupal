@@ -1,0 +1,35 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements function email_form_schema().
+ */
+
+function email_form_schema() {
+  $schema['email_form_node_subscriber'] = [
+    'description' => 'Stores user mails.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique history ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'type' => 'int',
+        'description' => "Store user ID.",
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+      ],
+
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
