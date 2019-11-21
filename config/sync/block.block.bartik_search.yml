@@ -1,0 +1,29 @@
+uuid: 27462cdc-820b-4016-9620-b43795499912
+langcode: fr
+status: true
+dependencies:
+  module:
+    - date_condition
+    - search
+  theme:
+    - bartik
+_core:
+  default_config_hash: za-39d5WDUg6XvbyqSnuVYEeq6QM4qKJxW8MnoAha5A
+id: bartik_search
+theme: bartik
+region: sidebar_first
+weight: -1
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Rechercher
+  provider: search
+  label_display: visible
+visibility:
+  date_condition:
+    id: date_condition
+    start_date: ''
+    end_date: ''
+    negate: null
+    context_mapping: {  }

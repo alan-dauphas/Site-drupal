@@ -1,0 +1,9 @@
+uuid: fc82fde0-cfe2-49ef-bad1-2b2a5460e7f9
+langcode: fr
+status: true
+dependencies: {  }
+id: costaud
+label: Costaud
+weight: 3
+is_admin: null
+permissions: {  }

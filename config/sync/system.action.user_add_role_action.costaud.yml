@@ -1,0 +1,14 @@
+uuid: dc8ff50f-914f-47b1-ae0f-c4b31def28d4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.costaud
+  module:
+    - user
+id: user_add_role_action.costaud
+label: 'Ajouter le rôle Costaud aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: costaud

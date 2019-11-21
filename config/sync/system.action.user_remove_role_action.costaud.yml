@@ -1,0 +1,14 @@
+uuid: 000f619b-a819-4814-a485-9280847b1aaa
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.costaud
+  module:
+    - user
+id: user_remove_role_action.costaud
+label: 'Enlever le rôle Costaud des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: costaud
