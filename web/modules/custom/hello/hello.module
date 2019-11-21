@@ -96,6 +96,14 @@ function hello_form_user_admin_settings_alter(array &$form, FormStateInterface $
     $form['#submit'][] = 'hello_user_admin_settings_form_submit';
 }
 
+function hello_form_alter(array &$form, FormStateInterface $form_state, $form_id){
+//  ksm($form_id); Etape 1 trouver le nom du formulaire.
+  if ($form_id == 'node_article_form'){ // Etape 2 verifie si on est bien dans le formulaire que l'on souhaite modifier
+ ksm($form); //Etape 3 : permet de trouver la partie du formulaire que l'on souhaite modifier
+    $form['revision_log']['#access'] = FALSE; // Etape 4 : modifie la partie trouver dans l'étape 3
+  }
+}
+
 function hello_user_admin_settings_form_submit(array &$form, FormStateInterface $form_state)
 {
     $optionsChoice = $form_state->getValue('options');
