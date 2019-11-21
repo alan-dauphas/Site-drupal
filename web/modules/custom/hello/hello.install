@@ -3,6 +3,7 @@
 use Drupal\Core\Database\Database;
 /**
  * Implements function hello_schema().
+ * implémente un nouveau formulaire.
  */
 
 function hello_schema() {
