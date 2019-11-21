@@ -1,0 +1,16 @@
+uuid: 18647b9a-0d29-4fa7-8cbf-1ca16c2d145c
+langcode: en
+status: false
+dependencies: {  }
+id: prod
+label: prod
+description: ''
+folder: ''
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist:
+  - system.site
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
