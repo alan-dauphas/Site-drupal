@@ -20,6 +20,8 @@ module:
   date_condition: 0
   datetime: 0
   dblog: 0
+  devel: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   email_form: 0
@@ -31,6 +33,7 @@ module:
   help: 0
   history: 0
   image: 0
+  kint: 0
   language: 0
   link: 0
   locale: 0
@@ -52,6 +55,8 @@ module:
   update: 0
   user: 0
   views_ui: 0
+  webform: 0
+  webprofiler: 0
   menu_link_content: 1
   views: 10
   standard: 1000
